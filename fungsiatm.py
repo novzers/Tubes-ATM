@@ -61,9 +61,14 @@ def transfer(rek, jumlahTransfer, rekTransfer):
     df.to_csv('data.csv')
 
 
-def gantiPIN():
-    pass
+def gantiPIN(rek, pinbaru):
+    if(len(pinbaru) == 6 and pinbaru.isnumeric()):
+        df.loc[rek][0] = pinbaru
+        print("Berhasil mengubah PIN.")
+        df.to_csv('data.csv')
+    else:
+        print("PIN baru yang anda masukkan tidak valid.")
+
 
 
 df = pd.read_csv("data.csv", index_col="Rekening")
-

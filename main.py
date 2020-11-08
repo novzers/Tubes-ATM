@@ -15,6 +15,7 @@ while (tries < 3):
             print("PIN anda salah. Coba lagi. (" + str(2-tries) + " percobaan lagi).")
         else:
             print("Kartu ATM anda terblokir. Silahkan hubungi Bank terdekat.")
+            exit()
         tries += 1
 me = 0
 while True:
@@ -40,7 +41,8 @@ while True:
         if (fn.prompt() == 0):
             break
     elif me == 5:
-        fn.gantiPIN()
+        pinbaru = input("Masukkan PIN baru: ")
+        fn.gantiPIN(rek, pinbaru)
         if (fn.prompt() == 0):
             break
     else:
