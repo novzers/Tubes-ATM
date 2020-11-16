@@ -1,8 +1,11 @@
 import pandas as pd
 import fungsiatm as fn
 
-
-df = pd.read_csv("data.csv", index_col="PIN")
+dtype_dic = {'Rekening': int,
+            'PIN': str,
+            'Saldo': int
+}
+df = pd.read_csv("data.csv", index_col="PIN", dtype=dtype_dic)
 tries = 0
 while (tries < 3):
     try:

@@ -1,13 +1,26 @@
 import pandas as pd
 
 def menu():
-    print('''Selamat datang di ATM Pengkom
-        Pilih menu:
-        1. Cek Saldo
-        2. Tarik Saldo
-        3. Deposit Tunai
-        4. Transfer Saldo
-        5. Ganti PIN''')
+    print('''
+-----------------------------
+  /$$$$$$  /$$$$$$$$ /$$      /$$       /$$$$$$$                               /$$                              
+ /$$__  $$|__  $$__/| $$$    /$$$      | $$__  $$                             | $$                              
+| $$  \ $$   | $$   | $$$$  /$$$$      | $$  \ $$ /$$$$$$  /$$$$$$$   /$$$$$$ | $$   /$$  /$$$$$$  /$$$$$$/$$$$ 
+| $$$$$$$$   | $$   | $$ $$/$$ $$      | $$$$$$$//$$__  $$| $$__  $$ /$$__  $$| $$  /$$/ /$$__  $$| $$_  $$_  $$
+| $$__  $$   | $$   | $$  $$$| $$      | $$____/| $$$$$$$$| $$  \ $$| $$  \ $$| $$$$$$/ | $$  \ $$| $$ \ $$ \ $$
+| $$  | $$   | $$   | $$\  $ | $$      | $$     | $$_____/| $$  | $$| $$  | $$| $$_  $$ | $$  | $$| $$ | $$ | $$
+| $$  | $$   | $$   | $$ \/  | $$      | $$     |  $$$$$$$| $$  | $$|  $$$$$$$| $$ \  $$|  $$$$$$/| $$ | $$ | $$
+|__/  |__/   |__/   |__/     |__/      |__/      \_______/|__/  |__/ \____  $$|__/  \__/ \______/ |__/ |__/ |__/
+                                                                     /$$  \ $$                                  
+                                                                    |  $$$$$$/                                  
+                                                                     \______/                                   
+-----------------------------
+    Pilih menu:
+    1. Cek Saldo
+    2. Tarik Saldo
+    3. Deposit Tunai
+    4. Transfer Saldo
+    5. Ganti PIN''')
     menu = int(input("Pilih nomor menu: "))
     return menu
 
@@ -51,19 +64,20 @@ def transfer(rek, jumlahTransfer, rekTransfer):
     saldoa = df.loc[rek][1]
     saldoa -= jumlahTransfer
     if (saldoa < 0):
-        print("Gagal menarik uang. Jumlah uang yang ingin ditarik lebih besar dari saldo.")
+        print("Gagal transfer uang. Jumlah uang yang ingin ditransfer lebih besar dari saldo.")
+        saldoa += jumlahTransfer
     else:
         print("Berhasil transfer uang sebanyak Rp" + str(jumlahTransfer) + ".")
         print("Sisa saldo anda sekarang Rp" + str(saldoa) + ".")
-    saldor += jumlahTransfer
-    df.loc[rek][1] = saldoa
-    df.loc[rekTransfer][1] = saldor
-    df.to_csv('data.csv')
+        saldor += jumlahTransfer
+        df.loc[rek][1] = saldoa
+        df.loc[rekTransfer][1] = saldor
+        df.to_csv('data.csv')
 
 
 def gantiPIN(rek, pinbaru):
     if(len(pinbaru) == 6 and pinbaru.isnumeric()):
-        df.loc[rek][0] = pinbaru
+        df.loc[rek][0] = str(pinbaru)
         print("Berhasil mengubah PIN.")
         df.to_csv('data.csv')
     else:
