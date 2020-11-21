@@ -43,7 +43,7 @@ def wait(t):
     # KAMUS LOKAL
     # i, t : integer
     # ALGORITMA
-    print("Silahkan tunggu...", end="")
+    print("Silahkan tunggu...")
     time.sleep(t)
 
 def prompt():
@@ -108,13 +108,13 @@ def transfer(rek, jumlahTransfer, rekTransfer):
         print("Rekening yang anda masukkan tidak valid.")
         return 0
     saldoa = df.loc[rek][1]
-    saldoa -= jumlahTransfer
+    saldoa = saldoa - jumlahTransfer - 2500
     wait(1.1)
     if (saldoa < 0):
-        print("Gagal transfer uang. Jumlah uang yang ingin ditransfer lebih besar dari saldo.")
-        saldoa += jumlahTransfer
+        print("Gagal transfer uang. Jumlah uang yang ingin ditransfer dan biaya transfer lebih besar dari saldo.")
+        saldoa = saldoa + jumlahTransfer + 2500
     else:
-        print("Berhasil transfer uang sebanyak Rp" + str(jumlahTransfer) + ".")
+        print("Berhasil transfer uang sebanyak Rp" + str(jumlahTransfer) + ", dengan biaya transfer Rp2500.")
         print("Sisa saldo anda sekarang Rp" + str(saldoa) + ".")
         saldor += jumlahTransfer
         df.loc[rek][1] = saldoa
