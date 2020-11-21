@@ -1,3 +1,14 @@
+# PROGRAM main
+# Simulasi kerja ATM
+# Program utama yang akan dijalankan saat membuka ATM
+
+# KAMUS
+# df : pandas dataframe
+# rek, pin, saldo, tries, me, jumlahTarik, jumlahDepo, rekTransfer, pinbaru: int
+
+# ALGORITMA
+
+# import library pandas dan fungsi buatan pada file fungsiatm
 import pandas as pd
 import fungsiatm as fn
 
